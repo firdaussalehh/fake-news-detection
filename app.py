@@ -35,7 +35,6 @@ menu = st.sidebar.radio(
 )
 
 # HOME
-# HOME
 if menu == "Home":
     st.title("🏠 Fake News Detection Dashboard")
     st.write("""
@@ -57,7 +56,6 @@ if menu == "Home":
     5. Display result in dashboard  
     """)
 
-elif menu == "Fake News Matcher":
 elif menu == "Fake News Matcher":
     st.title("🔍 Fake News Matcher")
     st.write("Choose a sample news article or paste your own news text.")
