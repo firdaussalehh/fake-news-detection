@@ -35,6 +35,29 @@ menu = st.sidebar.radio(
 )
 
 # HOME
+# HOME
+if menu == "Home":
+    st.title("🏠 Fake News Detection Dashboard")
+    st.write("""
+    This application detects whether a news article is likely to be Real or Fake
+    using Natural Language Processing and Machine Learning.
+    """)
+
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Dataset", "WELFake")
+    col2.metric("Model", "Logistic Regression")
+    col3.metric("Feature Extraction", "TF-IDF")
+
+    st.subheader("Project Workflow")
+    st.write("""
+    1. Input news text  
+    2. Clean the text  
+    3. Convert text into TF-IDF features  
+    4. Predict using Logistic Regression  
+    5. Display result in dashboard  
+    """)
+
+elif menu == "Fake News Matcher":
 elif menu == "Fake News Matcher":
     st.title("🔍 Fake News Matcher")
     st.write("Choose a sample news article or paste your own news text.")
