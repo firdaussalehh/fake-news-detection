@@ -35,51 +35,43 @@ menu = st.sidebar.radio(
 )
 
 # HOME
-if menu == "Home":
-    st.title("📰 Fake News Detection Dashboard")
-    st.write("""
-    This application detects whether a news article is likely to be **Real News** or **Fake News**
-    using Natural Language Processing and Machine Learning.
-    """)
-
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Dataset", "WELFake")
-    col2.metric("Model", "Logistic Regression")
-    col3.metric("Feature Extraction", "TF-IDF")
-
-    st.subheader("Project Workflow")
-    st.write("""
-    1. Input news text  
-    2. Clean the text  
-    3. Convert text into TF-IDF features  
-    4. Predict using Logistic Regression  
-    5. Display prediction and dashboard results  
-    """)
-
-# FAKE NEWS MATCHER
 elif menu == "Fake News Matcher":
     st.title("🔍 Fake News Matcher")
+    st.write("Choose a sample news article or paste your own news text.")
 
     sample_news = {
         "Select sample news": "",
-        "Sample 1: Political News": "The government announced a new policy today according to official sources.",
-        "Sample 2: Health News": "Doctors said the new medical research shows promising results after clinical testing.",
-        "Sample 3: Viral Claim": "Breaking shocking secret cure discovered overnight and guaranteed to work instantly.",
-        "Sample 4: Election News": "The election commission released official voting data after the counting process ended.",
-        "Sample 5: Suspicious News": "You will not believe this viral story that the government is hiding from everyone."
+
+        "Real Sample: Government Policy":
+        "The government announced a new economic policy today according to official sources and ministry reports.",
+
+        "Real Sample: University Research":
+        "A university research team published new findings after conducting a study with verified data and expert review.",
+
+        "Real Sample: Police Statement":
+        "Police released an official statement about the investigation and confirmed that further action will be taken.",
+
+        "Fake Sample: Miracle Cure":
+        "Breaking shocking news! Doctors are hiding a miracle cure that can heal every disease instantly. Click here before it is deleted.",
+
+        "Fake Sample: Secret Government Claim":
+        "You will not believe this secret viral report. The government is hiding the truth from everyone and only this website knows it.",
+
+        "Fake Sample: Guaranteed Money":
+        "This secret method is guaranteed to make anyone rich overnight. Thousands are using it and banks are trying to stop it."
     }
 
     selected_sample = st.selectbox("Choose sample news:", list(sample_news.keys()))
 
     news_text = st.text_area(
-        "News text:",
+        "Or paste your own news article here:",
         value=sample_news[selected_sample],
-        height=200
+        height=220
     )
 
     if st.button("Detect News"):
         if news_text.strip() == "":
-            st.warning("Please choose or enter news text.")
+            st.warning("Please choose a sample or enter news text.")
         else:
             cleaned = clean_text(news_text)
             transformed = vectorizer.transform([cleaned])
