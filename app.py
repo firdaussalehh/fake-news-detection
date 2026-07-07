@@ -1,9 +1,8 @@
-# pasted the full code 
+import streamlit as st
 import pickle
 import re
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.metrics import confusion_matrix
 
 model = pickle.load(open("fake_news_model.pkl", "rb"))
 vectorizer = pickle.load(open("tfidf_vectorizer.pkl", "rb"))
