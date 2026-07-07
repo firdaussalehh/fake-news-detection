@@ -60,11 +60,26 @@ if menu == "Home":
 elif menu == "Fake News Matcher":
     st.title("🔍 Fake News Matcher")
 
-    news_text = st.text_area("Paste news headline or article here:", height=200)
+    sample_news = {
+        "Select sample news": "",
+        "Sample 1: Political News": "The government announced a new policy today according to official sources.",
+        "Sample 2: Health News": "Doctors said the new medical research shows promising results after clinical testing.",
+        "Sample 3: Viral Claim": "Breaking shocking secret cure discovered overnight and guaranteed to work instantly.",
+        "Sample 4: Election News": "The election commission released official voting data after the counting process ended.",
+        "Sample 5: Suspicious News": "You will not believe this viral story that the government is hiding from everyone."
+    }
+
+    selected_sample = st.selectbox("Choose sample news:", list(sample_news.keys()))
+
+    news_text = st.text_area(
+        "News text:",
+        value=sample_news[selected_sample],
+        height=200
+    )
 
     if st.button("Detect News"):
         if news_text.strip() == "":
-            st.warning("Please enter news text.")
+            st.warning("Please choose or enter news text.")
         else:
             cleaned = clean_text(news_text)
             transformed = vectorizer.transform([cleaned])
